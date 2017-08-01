@@ -1,0 +1,131 @@
+#Inicialização
+def imprimirMenuPrincipal():
+    print(" ------------------------------------")
+    print("|         BIBLIOTECA UFRPE           |")
+    print("| - Escolha uma opção                |")
+    print("|  (1)Usuário                        |")
+    print("|  (2)Livro                          |")
+    print("|  (3)Sair                           |")
+    print(" ------------------------------------")
+    opcao = int(input())
+    return opcao
+def imprimirMenuUsuario():
+    print(" ------------------------------------")
+    print("|         BIBLIOTECA UFRPE           |")
+    print("| - Escolha uma opção                |")
+    print("|                                    |")
+    print("|  (1)Cadastrar usuário              |")
+    print("|  (2)Alterar cadastro               |")
+    print("|  (3)Verificar usuário              |")
+    print("|  (4)Remover usuário                |")
+    print("|  (5)Relatório usuário              |")
+    print("|  (6)Sair                           |")
+    print(" ------------------------------------")
+    opcao = int(input())
+    return opcao
+def imprimirMenuLivro():
+    print(" ------------------------------------")
+    print("|         BIBLIOTECA UFRPE           |")
+    print("| - Escolha uma opção                |")
+    print("|  (1)Cadastrar livro                |")
+    print("|  (2)Remover livro                  |")
+    print("|  (3)Alterar livro                  |")
+    print("|  (4)Verificar livro                |")
+    print("|  (5)Relatório livro                |")
+    print("|  (6)Sair                           |")
+    print(" ------------------------------------")
+    opcao = int(input())
+    return opcao
+def MenuAlterarUsuario():
+    print(" ------------------------------------")
+    print("|         BIBLIOTECA UFRPE           |")
+    print("| - Escolha uma opção                |")
+    print("|  (1)Alterar nome                   |")
+    print("|  (2)Alterar CPF                    |")
+    print("|  (3)Alterar curso                  |")
+    print("|  (4)Alterar situação               |")
+    print("|  (5)Alterar quantidade de livros   |")
+    print("|  (6)Sair                           |")
+    print(" ------------------------------------")
+    opcao = int(input())
+    return opcao
+def MenuAlterarLivros():
+    print(" ------------------------------------")
+    print("|         BIBLIOTECA UFRPE           |")
+    print("| - Escolha uma opção                |")
+    print("|  (1)Alterar título                 |")
+    print("|  (2)Alterar autor                  |")
+    print("|  (3)Alterar código                 |")
+    print("|  (4)Alterar quantidade             |")
+    print("|  (5)Sair                           |")
+    print(" ------------------------------------")
+    opcao = int(input())
+    return opcao
+
+
+while True:
+    opcao = imprimirMenuPrincipal()
+    if opcao == 1: #MENU DO USUARIO
+        opcao = imprimirMenuUsuario()
+        if opcao == 1: #CADASTRAR USUARIO
+            cpf = input("Informe o cpf: ")
+            nome = input("Informe o nome: ")
+            curso = input("Informe o curso: ")
+            situacao = True
+            usuario = Usuario(nome,curso,cpf,situacao)
+        elif opcao == 2: #ALTERAR USUARIO
+            opcao = MenuAlterarUsuario()
+        elif opcao == 3: #VERIFICA A SITUAÇÃO DO USUÁRIO
+            chave = input("Informe o cpf:")
+            a = Usuario.pesquisar(chave)
+            b = a.getSituacao()
+            if b == True:
+                print("Usuário ativo")
+            else:
+                print("Usuário inativo")
+        elif opcao == 4: #REMOVER USUÁRIO
+            chave = input("Informe o cpf:")
+            b = deletar(chave)
+            #balanceamentoDel(b)
+        #elif opcao == 5:
+            #RELATORIO USUÁRIO    
+            
+        elif opcao == 6:
+            break
+        else:
+            print("Opção inválida, tente novamente")
+
+    elif opcao == 2: #MENU DOS LIVROS
+        opcao = imprimirMenuLivro()
+        if opcao == 1: #CADASTRAR LIVRO
+            titulo = input("Informe o título do livro: ")
+            autor = input("Informe o autor do livro: ")
+            codigo = input("Informe o código de barras do livro: ")
+            quantidade = input("Informe a quantidade de exemplares deste livro: ")
+            livro = Livro(titulo,autos,codigo,quantidade)
+'''
+        elif opcao == 2:
+            #REMOVER
+        elif opcao == 3:
+            #ALTERAR LIVRO
+            opcao = MenuAlterarLivros()
+'''
+        elif opcao == 4:
+            #VERIFICAR
+            chave = input("Informe o codigo:")
+            a = Livro.pesquisar(chave)
+            b = a.getQtddExemplar()
+            if b > 0:
+                print("Livro disponível para empréstimo")
+            else:
+                print("Livro indisponível")
+        #elif opcao == 5:
+            #RELATORIO
+        elif opcao == 6:
+            break
+        else:
+            print("Opção inválida, tente novamente")
+    elif opcao == 3:
+        break
+    else:
+        print("Opção inválida, tente novamente")
